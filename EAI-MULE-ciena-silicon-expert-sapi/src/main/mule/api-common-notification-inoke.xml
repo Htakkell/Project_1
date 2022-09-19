@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+	<sub-flow name="sub-flow-api-common-notification-invoke" doc:id="ffff21f2-f658-4f86-9e10-4e39f14be1d9" >
+
+		<logger level="INFO" doc:name="Logger" doc:id="750a2586-73cf-4981-a39b-90f1e57e9336" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="5c76b81b-370d-44e3-9968-da44742c5c14" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="client_secret" ><![CDATA[%dw 2.0
+output application/java
+---
+p('secure::notification.client_secret')]]></ee:set-variable>
+				<ee:set-variable variableName="client_id" ><![CDATA[%dw 2.0
+output application/java
+---
+p('secure::notification.client_id')]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<http:request method="POST" doc:name="notification-invocation" doc:id="e2186717-57ec-42c0-8888-1d8df9b023aa" config-ref="HTTP_Request_configuration_notification" path="#[p('notification.send_email.path')]" responseTimeout="99999999">
+			<http:headers ><![CDATA[#[output application/java
+---
+{
+	client_secret : vars.client_secret,
+	client_id : vars.client_id
+}]]]></http:headers>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="64208cf8-583e-4f64-8246-c948216955c9" message="#[payload]"/>
+	</sub-flow>
+
+	
+	
+		<!--  Below sub flow call is for extracting multiple invoices using Id from salesforce system -->
+	</mule>

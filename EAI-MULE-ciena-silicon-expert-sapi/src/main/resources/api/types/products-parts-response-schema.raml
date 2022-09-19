@@ -1,0 +1,28 @@
+#%RAML 1.0 DataType
+displayName: Parts Response object
+type: object
+properties:
+  status:
+    type: object
+    properties:
+      code:
+        displayName: Code
+        description: code
+        type: string
+      message:
+          displayName: Message
+          description: message
+          type: string
+      success:
+            displayName: Success
+            description: success
+            type: string
+      requestId:
+          displayName: Request Id
+          description: request-id
+          type: string
+  result:
+    type: object
+    properties:
+      partData?:
+        type: part-data[]

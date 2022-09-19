@@ -1,0 +1,10 @@
+{
+  "api": {
+    "name": "ciena-api",
+    "version": "12911098",
+    "environment": "dev"
+  },
+  "status": "OK",
+  "message": "Success",
+  "timestamp": "2020-03-09T22:18:26.625Z"
+}

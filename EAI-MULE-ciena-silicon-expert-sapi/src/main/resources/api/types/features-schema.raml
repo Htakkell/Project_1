@@ -1,0 +1,43 @@
+#%RAML 1.0 DataType
+displayName: Features
+type: object
+properties:
+  featureName?:
+    displayName: Feature Name
+    description: feature-name
+    type: string
+  featureValue?:
+    displayName: Feature Value
+    description: feature-value
+    type: string
+  featureUnit?:
+    displayName: Feature Unit
+    description: feature-unit
+    type: string
+  featureId?:
+    displayName: Feature ID
+    description: feature-id
+    type: string
+  featureValueDetails?:
+    type: object
+    properties:
+      value?:
+        displayName: Value
+        description: value
+        type: string
+      sign?:
+        displayName: Sign
+        description: sign
+        type: string
+      unit?:
+        displayName: Unit
+        description: unit
+        type: string
+      multiplier?:
+        displayName: Multiplier
+        description: multiplier
+        type: string
+      multiplierValue?:
+        displayName: Multiplier Value
+        description: multiplier-value
+        type: string

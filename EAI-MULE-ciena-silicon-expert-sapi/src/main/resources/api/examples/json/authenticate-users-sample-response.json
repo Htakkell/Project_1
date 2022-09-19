@@ -1,0 +1,8 @@
+{
+    "status": {
+        "code": "2",
+        "message": "Authentication Succeeded",
+        "success": "true",
+		"jSessionId": "0x00000000f6f8fc400x00000000f6f8fc400x00000000f6f8fc40"
+    }
+}

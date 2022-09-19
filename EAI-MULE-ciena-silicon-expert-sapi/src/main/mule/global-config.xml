@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger"
+	xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:tls="http://www.mulesoft.org/schema/mule/tls"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+	
+	<!-- APIkit configuration -->
+    <apikit:config name="ciena-silicon-expert-sapi-config" api="ciena-silicon-expert-sapi.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    
+	<!-- HTTPS Listener Configuration -->
+    <http:listener-config name="HTTPS_Listener_Config" doc:name="HTTPS Listener config" doc:id="bfb3975e-2681-4a15-92be-633cea5ae1c3">
+		<http:listener-connection protocol="HTTPS" host="${https.host}" port="${https.port}" tlsContext="TLS_Context" connectionIdleTimeout="${https.connectionIdleTimeout}">
+			<reconnection >
+				<reconnect frequency="${https.reconnectionFrequency}" count="${https.reconnectionCount}" />
+			</reconnection>
+		</http:listener-connection>
+	</http:listener-config>
+	
+	<!-- Global Properties -->
+	<global-property doc:name="Global Property" doc:id="08d0ebda-26be-41cc-8df0-f062501aca23" name="env" value='""' />
+	<global-property doc:name="Global Property" doc:id="80727a71-11aa-409b-94f7-ee355b93ab9e" name="secure.key" value='""' />
+	<global-property doc:name="Global Property" doc:id="3fe978c8-eec6-4140-8401-c52c676b9d40" name="apiId" value='1' />	
+	
+	<!-- Configuration property details -->
+	<configuration-properties doc:name="Configuration properties" doc:id="d8cc374e-999d-401c-8ea2-1343655abf32" file="${env}.yaml" />
+	
+	<!-- Secure property configuration details -->
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="960835ff-fcb4-4f3e-8e40-8067290a52f8" file="${env}-secure.yaml" key="${secure.key}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+	
+	<!-- TLS configuration -->
+	<tls:context name="TLS_Context" doc:name="TLS Context" doc:id="fc36911f-c561-47d8-8960-6f2ce84443e7" >
+		<tls:trust-store insecure="true" />
+		<tls:key-store type="jks" path="keystore.jks" keyPassword="changeme" password="changeme" />
+	</tls:context>
+	
+	<!-- API Auto discovery configuration -->
+	<api-gateway:autodiscovery apiId="${apiId}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="5476a1d2-e978-4c84-846b-6e86784e527c" flowRef="ciena-silicon-expert-sapi-main" />
+	
+	<http:request-config name="HTTP_Request_configuration_notification"
+			doc:name="HTTP Request configuration"
+			doc:id="66ca0e79-7138-46a0-9305-4442e2ece239">
+		<http:request-connection host="${notification.host}"
+			protocol="HTTPS" connectionIdleTimeout="${notification.connectionIdleTimeout}">
+			<reconnection >
+				<reconnect frequency="${notification.reconnectionFrequency}" count="${notification.reconnectionCount}" />
+			</reconnection>
+		</http:request-connection>
+	</http:request-config>
+	
+	<http:request-config name="Silicon_Expert_HTTP_Request_configuration"
+			doc:name="HTTP Request configuration"
+			doc:id="87232b89-986c-487b-9d8f-0ee5365a9e3d" basePath="${siliconExpert.basePath}">
+		<http:request-connection host="${siliconExpert.host}"
+			protocol="HTTPS" connectionIdleTimeout="${siliconExpert.connectionIdleTimeout}">
+			<reconnection >
+				<reconnect frequency="${siliconExpert.reconnectionFrequency}" count="${siliconExpert.reconnectionCount}" />
+			</reconnection>
+		</http:request-connection>
+	</http:request-config>
+	
+	<!-- JSON logger configuration -->
+	<json-logger:config name="JSON_Logger_Config" doc:name="JSON Logger Config" doc:id="98bd6292-25b5-4e3e-bddd-39282ec6b373" environment="${env}" />
+
+</mule>

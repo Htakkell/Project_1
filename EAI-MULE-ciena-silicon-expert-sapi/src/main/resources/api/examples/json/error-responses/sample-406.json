@@ -1,0 +1,5 @@
+{
+	"isSuccess" : false,
+	"errorCode" : 406,
+	"errorText" : "Not Acceptable : The server can only generate a response that is not accepted by the client"
+}

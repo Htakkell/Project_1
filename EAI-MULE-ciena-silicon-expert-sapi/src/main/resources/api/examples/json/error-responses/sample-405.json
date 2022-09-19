@@ -1,0 +1,5 @@
+{
+	"isSuccess" : false,
+	"errorCode" : 405,
+	"errorText" : "Method Not Allowed : GET method specified in the request is not allowed."
+}

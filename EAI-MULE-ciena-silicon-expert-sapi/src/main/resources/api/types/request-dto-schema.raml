@@ -1,0 +1,912 @@
+#%RAML 1.0 DataType
+displayName: Request DTO schema object
+type: object
+properties:
+  requestedComId:
+    displayName: Requested Com Id
+    description: requested-com-id
+    type: string
+  summaryData?:
+    type: object
+    properties:
+      dataProviderId?:
+        displayName: Data Provider Id
+        description: data-provider-id
+        type: string
+      partNumber?:
+        displayName: Part Number
+        description: part-number
+        type: string
+      manufacturer?:
+        displayName: Manufacturer
+        description: manufacturer
+        type: string
+      manufacturerId?:
+        displayName: Manufacturer Id
+        description: manufacturer-id
+        type: string
+      partDescription?:
+        displayName: Part Description
+        description: part-description
+        type: string
+      datasheet?:
+        displayName: Datasheet
+        description: datasheet
+        type: string
+      onlineSupplierDatasheetUrl?:
+        displayName: Online Supplier Datasheet URL
+        description: Online-supplier-datasheet-url
+        type: string
+      radHard?:
+        displayName: Rad Hard
+        description: rad-hard
+        type: string
+      doseLevel?:
+        displayName: Dose Level
+        description: dose-level
+        type: string
+      taxonomyPath?:
+        displayName: Taxonomy Path
+        description: taxonomy-path
+        type: string
+      taxonomyPathIds?:
+        displayName: Taxonomy Path IDs
+        description: taxonomy-path-ids
+        type: string
+      eccn?:
+        displayName: ECCN
+        description: eccn
+        type: string
+      unspsc?:
+        displayName: UNSPSC
+        description: unspsc
+        type: string
+      otherSources?:
+        displayName: Other Sources
+        description: other-sources
+        type: string
+      lastCheckDate?:
+        displayName: Last Check Date
+        description: last-check-date
+        type: string
+      partMarking?:
+        displayName: Part Marking
+        description: part-marking
+        type: string
+      introductionDate?:
+        displayName: Introduction Date
+        description: introduction-date
+        type: string
+      militarySpecifications?:
+        displayName: Military Specifications
+        description: military-specifications
+        type: string         
+      partAliases?:
+        type: object
+        properties:
+          partAlias?:
+            displayName: Part Alias
+            description: part-alias
+            type: string
+      esdClass?:
+        displayName: ESD Class
+        description: esd-class
+        type: string
+      esdSourceofInformation?:
+        displayName: ESD Source of Information
+        description: esd-sourceof-information
+        type: string
+      authorizedDistributors?:
+        displayName: Authorized Distributors
+        description: authorized-distributors
+        type: string
+      genericName?:
+        displayName: Generic Name
+        description: generic-name
+        type: string
+      familyName?:
+        displayName: Family Name
+        description: family-name
+        type: string
+      aecNumber?:
+        displayName: AEC Number
+        description: aec-number
+        type: string
+      aecQualified?:
+        displayName: AEC Qualified
+        description: aec-qualified
+        type: string
+      automotive?:
+        displayName: Automotive
+        description: automotive
+        type: string
+      supplierCageCode?:
+        displayName: Supplier Cage Code
+        description: supplier-cage-code
+        type: string
+      euRohs?:
+        displayName: EURoHS
+        description: eurohs
+        type: string
+      rohsVersion?:
+        displayName: RoHS Version
+        description: rohs-version
+        type: string
+      scheduleB?:
+        displayName: Schedule B
+        description: schedule-b
+        type: string
+      htsusa?:
+        displayName: HTSUSA
+        description: htsusa
+        type: string
+      ppap?:
+        displayName: PPAP
+        description: ppap
+        type: string
+      countriesOfOrigin?:        
+        type: object
+        properties:
+          countryOfOrigin?:
+            type: country-of-origin[]
+      usChinaTariffImpact?:
+        displayName: US China Tariff Impact
+        description: us-china-tariff-impact
+        type: string
+      plName?:
+        displayName: PL Name
+        description: plname
+        type: string
+  qualifications?:
+    type: object
+    properties:
+      energyEfficiency?:
+        type: object
+        properties:
+          enablingEnergyEfficiency?:
+            displayName: Enabling Energy Efficiency
+            description: enabling-energy-efficiency
+            type: string
+          sourceOfInformation?:
+            displayName: Source Of Information
+            description: source-of-information
+            type: string
+      agencyApprovals?:
+        type: object
+        properties:
+          agency?:
+            type: object
+            properties:
+              agency?:
+                displayName: Agency
+                description: agency
+                type: string
+              standard?:
+                displayName: Standard
+                description: standard
+                type: string
+              standardDetails?:
+                displayName: Standard Details
+                description: standard-details
+                type: string
+              fileNumber?:
+                displayName: File-Number
+                description: file-number
+                type: string
+              certificationDocument?:
+                displayName: Certification Document
+                description: certification-document
+                type: string
+      reliability?:
+        type: object
+        properties: 
+          fitDetails?:
+            type: object
+            properties:
+              fitDetail?:
+                type: object
+                properties:                  
+                  fit?:
+                    displayName: FIT
+                    description: fit
+                    type: string
+                  conditionName?:
+                    displayName: Condition Name
+                    description: condition-name
+                    type: string
+                  conditionValue?:
+                    displayName: Condition Value
+                    description: condition-value
+                    type: string
+          mtbfDetails?:
+            type: object
+            properties:
+              mtbfDetail?:
+                type: object
+                properties:                  
+                  mtbf?:
+                    displayName: MTBF
+                    description: mtbf
+                    type: string
+                  conditionName?:
+                    displayName: Condition Name
+                    description: condition-name
+                    type: string
+                  conditionValue?:
+                    displayName: Condition Value
+                    description: condition-value
+                    type: string
+          sourceOfInformation?:
+            displayName: Source Of Information
+            description: source-of-information
+            type: string
+          flammabilityRating?:
+            displayName: Flammability Rating
+            description: flammability-rating
+            type: string
+  lifeCycleData?:
+    type: object
+    properties:
+      partStatus?:
+        displayName: Part Status
+        description: part-status
+        type: string
+      ltbDate?:
+        displayName: LTB Date
+        description: ltb-date
+        type: string
+      source?:
+        displayName: Source
+        description: source
+        type: string
+      estimatedYearsToEol?:
+        displayName: Estimated Years To EOL
+        description: estimated-years-to-eol
+        type: string
+      estimatedEolDate?:
+        displayName: Estimated EOL Date
+        description: estimated-eol-date
+        type: string
+      partLifecycleStage?:
+        displayName: Part Lifecycle Stage
+        description: part-lifecycle-stage
+        type: string
+      minimumEstimatedYearsToEol?:
+        displayName: Minimum Estimated Years ToEOL
+        description: minimum-estimated-years-to-eol
+        type: string
+      maximumEstimatedYearsToEol?:
+        displayName: Maximum Estimated Years To EOL
+        description: maximum-estimated-years-to-eol
+        type: string
+      lifeCycleRiskGrade?:
+        displayName: Life Cycle Risk Grade
+        description: life-cycle-risk-grade
+        type: string
+      overallRisk?:
+        displayName: Overall Risk
+        description: overall-risk
+        type: string
+      partCounterfeitReports?:
+        displayName: Part Counterfeit Reports
+        description: part-counterfeit-reports
+        type: string
+      partLifecycleCode?:
+        displayName: Part Lifecycle Code
+        description: part-lifecycle-code
+        type: string
+  fullCounterfeitData?:
+    type: object
+    properties:
+      counterfeitOverallRisk?:
+        displayName: Counterfeit Overall Risk
+        description: counterfeit-overall-risk
+        type: string
+      partNumCounterfeitReportsCount?:
+        displayName: PartNum Counterfeit Reports Count
+        description: part-num-counterfeit-reports-count
+        type: string
+      manCounterfeitReportsCount?:
+        displayName: Man Counterfeit Reports Count
+        description: man-counterfeit-reports-count
+        type: string
+      manCounterfeitReports?:
+        type: man-counterfeit-reports[]
+      plCounterfeitReportsCount?:
+        displayName: Pl Counterfeit Reports Count
+        description: pl-counterfeit-reports-count
+        type: string
+      currentLifecycleStatus?:
+        displayName: Current Lifecycle Status
+        description: current-lifecycle-status
+        type: string
+      timeSinceMarketIntroduction?:
+        displayName: Time Since Market Introduction
+        description: time-since-market-introduction
+        type: string
+      authorizedDistributorswithStockCount?:
+        displayName: Authorized Distributors with Stock Count
+        description: authorized-distributors-with-stock-count
+        type: string
+      authorizedDistributorswithStockReports?:
+        type: authorized-distributors-with-stock-reports[]
+      historicalShortagesInventoryReported?:
+        displayName: Historical Shortages Inventory Reported
+        description: historical-shortages-inventory-reported
+        type: string
+      isPopularPart?:
+        displayName: Is Popular Part
+        description: is-popular-part
+        type: string
+  parametricData?:
+    type: object
+    properties:
+      features?:
+        type: features[]
+  packagingData?:
+    type: object
+    properties:
+      packagingSuffix?:
+        displayName: Packaging Suffix
+        description: packaging-suffix
+        type: string
+      packaging?:
+        displayName: Packaging
+        description: packaging
+        type: string
+      quantityOfPackaging?:
+        displayName: Quantity Of Packaging
+        description: quantity-of-packaging
+        type: string
+      reelDiameter?:
+        displayName: Reel Diameter
+        description: reel-diameter
+        type: string
+      reelWidth?:
+        displayName: Reel Width
+        description: reel-width
+        type: string
+      tapePitch?:
+        displayName: Tape Pitch
+        description: tape-pitch
+        type: string
+      tapeWidth?:
+        displayName: Tape Width
+        description: tape-width
+        type: string
+      feedHolePitch?:
+        displayName: Feed Hole Pitch
+        description: feed-hole-pitch
+        type: string
+      holeCenterToComponentCenter?:
+        displayName: Hole Center To Component Center
+        description: hole-center-to-component-center
+        type: string
+      leadClinchHeight?:
+        displayName: Lead Clinch Height
+        description: lead-clinch-height
+        type: string
+      componentOrientation?:
+        displayName: Component Orientation
+        description: component-orientation
+        type: string
+      packagingDocument?:
+        displayName: Packaging Document
+        description: packaging-document
+        type: string
+      tapeMaterial?:
+        displayName: Tape Material
+        description: tape-material
+        type: string
+      tapeType?:
+        displayName: Tape Type
+        description: tape-type
+        type: string
+  packageData?:
+    type: object
+    properties:
+      feature?:
+        type: features[]
+  manufacturingData?:
+    type: object
+    properties:
+      msl?:
+        displayName: MSL
+        description: msl
+        type: string
+      leadFinishPlating?:
+        displayName: Lead Finish Plating
+        description: lead-finish-plating
+        type: string
+      terminalBaseMaterial?:
+        displayName: Terminal Base Material
+        description: terminal-base-material
+        type: string
+      maximumReflowTemperature?:
+        displayName: Maximum Reflow Temperature
+        description: maximum-reflow-temperature
+        type: string
+      reflowSolderTime?:
+        displayName: Reflow Solder Time
+        description: reflow-solder-time
+        type: string
+      numberOfReflowCycle?:
+        displayName: Number Of Reflow Cycle
+        description: number-of-reflow-cycle
+        type: string
+      standard?:
+        displayName: Standard
+        description: standard
+        type: string
+      maximumWaveTemperature?:
+        displayName: Maximum Wave Temperature
+        description: maximum-wave-temperature
+        type: string
+      waveSolderTime?:
+        displayName: Wave Solder Time
+        description: wave-solder-time
+        type: string
+      underPlatingMaterial?:
+        displayName: Under Plating Material
+        description: under-plating-material
+        type: string
+      reflowTempSource?:
+        displayName: Reflow Temp Source
+        description: reflow-temp-source
+        type: string
+      waveTempSource?:
+        displayName: Wave Temp Source
+        description: wave-temp-source
+        type: string
+      underPlatingPorosityFree?:
+        displayName: Under Plating Porosity Free
+        description: under-plating-porosity-free
+        type: string
+  chemicalData?:
+    type: object
+    properties:
+      chemicalDto?:
+        type: chemical-dto[]
+  reachData?:
+    type: object
+    properties:
+      reachDto?:
+        type: object          
+        properties:
+          cachedSource?:
+            displayName: Cached Source
+            description: cached-source
+            type: string
+          containsSvhc?:
+            displayName: Contains SVHC
+            description: contains-svhc
+            type: string
+          svhcExceedThresholdLimit?:
+            displayName: SVHC Exceed Threshold Limit
+            description: svhc-exceed-threshold-limit
+            type: string
+          svhcListVersion?:
+            displayName: SVHC List Version
+            description: svhc-list-version
+            type: string
+          substanceIdentification?:
+            displayName: Substance Identification
+            description: substance-identification
+            type: string
+          substanceLocation?:
+            displayName: Substance Location
+            description: substance-location
+            type: string
+          substanceConcentration?:
+            displayName: Substance Concentration
+            description: substance-concentration
+            type: string
+          sourceType?:
+            displayName: Source Type
+            description: source-type
+            type: string
+          reachStatus?:
+            displayName: Reach Status
+            description: reach-status
+            type: string
+          casNumber?:
+            displayName: CAS Number
+            description: cas-number
+            type: string
+          svhcDateOfInclusion?:
+            displayName: SVHC Date Of Inclusion
+            description: svhc-date-of-inclusion
+            type: string
+          annexXIV?:
+            type: object
+            properties:
+              sunsetDate?:
+                displayName: Sunset Date
+                description: sunset-date
+                type: string
+              applicationDate?:
+                displayName: Application Date
+                description: application-date
+                type: string
+              authorizationEntryNumber?:
+                displayName: Authorization Entry Number
+                description: authorization-entry-number
+                type: string
+              exemptedCategories?:
+                displayName: Exempted Categories
+                description: exempted-categories
+                type: string
+  environmentalDto?:     
+    type: object
+    properties:
+      rohsStatus?:
+        displayName: RoHS Status
+        description: rohs-status
+        type: string
+      rohsVersion?:
+        displayName: RoHS Version
+        description: rohs-version
+        type: string
+      source?:
+        displayName: Source
+        description: source
+        type: string
+      sourceType?:
+        displayName: Source Type
+        description: source-type
+        type: string
+      exemption?:
+        displayName: Exemption
+        description: exemption
+        type: string
+      exemptionType?:
+        displayName: Exemption Type
+        description: exemption-type
+        type: string
+      exemptionCodes?:
+        displayName: Exemption Codes
+        description: exemption-codes
+        type: string
+      exemptionExpirationDate?:
+        displayName: Exemption Expiration Date
+        description: exemption-expiration-date
+        type: string
+      rohsIdentifier?:
+        displayName: Rohs Identifier
+        description: rohs-identifier
+        type: string
+      leadFree?:
+        displayName: Lead Free
+        description: lead-free
+        type: string
+      rareEarthElementInformation?:
+        displayName: Rare Earth Element Information
+        description: rare-earth-element-information
+        type: string
+      conflictMineralStatus?:
+        displayName: Conflict Mineral Status
+        description: conflict-mineral-status
+        type: string
+      conflictMineralStatement?:
+        displayName: Conflict Mineral Statement
+        description: conflict-mineral-statement
+        type: string
+      eiccMembership?:
+        displayName: EICC Membership
+        description: eicc-membership
+        type: string
+      eiccTemplate?:
+        displayName: EICC Template
+        description: eicc-template
+        type: string
+      eiccTemplateVersion?:
+        displayName: EICC Template Version
+        description: eicc-template-version
+        type: string
+      halgonFree?:
+        displayName: Halgon Free
+        description: halgon-free
+        type: string
+      chinaRohs?:
+        type: object
+        properties:
+          chinaRohsStatus?:
+            displayName: China RoHS Status
+            description: china-rohs-status
+            type: string
+          cadmiumConcentration?:
+            displayName: Cadmium Concentration
+            description: cadmium-concentration
+            type: string
+          cadmiumFlag?:
+            displayName: Cadmium Flag
+            description: cadmium-flag
+            type: string
+          chromiumConcentration?:
+            displayName: Chromium Concentration
+            description: chromium-concentration
+            type: string
+          chromiumFlag?:
+            displayName: Chromium Flag
+            description: chromium-flag
+            type: string
+          leadConcentration?:
+            displayName: Lead Concentration
+            description: lead-concentration
+            type: string
+          leadFlag?:
+            displayName: Lead Flag
+            description: lead-flag
+            type: string
+          mercuryConcentration?:
+            displayName: Mercury Concentration
+            description: mercury-concentration
+            type: string
+          mercuryFlag?:
+            displayName: Mercury Flag
+            description: mercury-flag
+            type: string
+          pbbConcentration:
+            displayName: PBB Concentration
+            description: pbb-concentration
+            type: string
+          pbbFlag?:
+            displayName: PBB Flag
+            description: pbb-flag
+            type: string
+          pbdeConcentration?:
+            displayName: PBDE Concentration
+            description: pbde-concentration
+            type: string
+          pbdeFlag?:
+            displayName: PBDE Flag
+            description: pbde-flag
+            type: string
+          epup?:
+            displayName: EPUP
+            description: epup
+            type: string
+          itemSubitemName?:
+            displayName: Item Subitem Name
+            description: item-subitem-name
+            type: string
+          sourceType?:
+            displayName: Source Type
+            description: source-type
+            type: string
+          cachedSource?:
+            displayName: Cached Source
+            description: cached-source
+            type: string
+          liveSupplierSource?:
+            displayName: Live Supplier Source
+            description: live-supplier-source
+            type: string
+      exemptionDetails?:
+        displayName: Exemption Details
+        description: exemption-details
+        type: string
+  gidepData?:
+    type: object
+    properties:
+      typeOfChange?:
+        displayName: Type Of Change
+        description: type-of-change
+        type: string
+      gidepDescription?:
+        displayName: GIDEP Description
+        description: gidep-description
+        type: string
+      notificationDate?:
+        displayName: Notification Date
+        description: notification-date
+        type: string
+      documentNumber?:
+        displayName: Document Number
+        description: document-number
+        type: string
+  pcnData?:
+    type: object
+    properties:
+      pcnDto?:
+        type: object
+        properties:
+          lastPcnNumber?:
+            displayName: Last PCN Number
+            description: last-pcn-number
+            type: string
+          lastPcnDate?:
+            displayName: Last PCN Date
+            description: last-pcn-date
+            type: string
+          lastPcnTypeOfChange?:
+            displayName: Last PCN Type Of Change
+            description: last-pcn-type-of-change
+            type: string
+          lastPcnSource?:
+            displayName: Last PCN Source
+            description: last-pcn-source
+            type: string
+          lastEolNumber?:
+            displayName: Last EOL Number
+            description: last-eol-number
+            type: string
+          lastEolDate?:
+            displayName: lastEOLDate
+            description: last-eol-date
+            type: string
+          lastEolSource?:
+            displayName: Last EOL Source
+            description: last-eol-source
+            type: string
+  pcnDetails?:
+    type: object
+    properties:
+      pcnDto?:
+        type: pcn-dto[]
+  replacementData?:
+    type: object
+    properties:
+      replacementDto?:
+        type: object          
+        properties:
+          replacementComId?:
+            displayName: Replacement Com Id
+            description: replacement-com-id
+            type: string
+          replacementPartNumber?:
+            displayName: Replacement Part Number
+            description: replacement-part-number
+            type: string
+          replacementType?:
+            displayName: Replacement Type
+            description: replacement-type
+            type: string
+  crossData?:
+    type: object
+    properties:
+      crossDto?:
+        type: cross-dto[]
+  averageInventory?:
+    displayName: average Inventory
+    description: average-inventory
+    type: string
+  franchisedInventoryData?:
+    type: object
+    properties:
+      franchisedInventoryDto?:
+        type: franchised-inventory-dto[]
+  pricingData?:
+    type: object
+    properties:
+      minimumPrice?:
+        displayName: Minimum Price
+        description: minimum-price
+        type: string
+      averagePrice?:
+        displayName: Average Price
+        description: average-price
+        type: string
+      minLeadtime?:
+        displayName: Min Lead time
+        description: min-lead-time
+        type: string
+      maxleadtime?:
+        displayName: Max Lead time
+        description: max-lead-time
+        type: string
+      lastUpdatedate?:
+        displayName: Last Update date
+        description: last-update-date
+        type: string
+  riskData?:
+    type: object
+    properties:
+      rohsRisk?:
+        displayName: Rohs Risk
+        description: rohs-risk
+        type: string
+      multiSourcingRisk?:
+        displayName: Multi Sourcing Risk
+        description: multi-sourcing-risk
+        type: string
+      inventoryRisk?:
+        displayName: Inventory Risk
+        description: inventory-risk
+        type: string
+      lifecycleRisk?:
+        displayName: Life Cycle Risk
+        description: life-cycle-risk
+        type: string
+      predictedObsolescenceYear?:
+        displayName: Predicted Obsolescence Year
+        description: predicted-obsolescence-year
+        type: string
+      lifecycleStage?:
+        displayName: Life Cycle Stage
+        description: life-cycle-stage
+        type: string
+      yearsEol?:
+        displayName: Years EOL
+        description: years-eol
+        type: string
+      numberOfDistributors?:
+        displayName: Number Of Distributors
+        description: number-of-distributors
+        type: string
+      numberOfOtherSources?:
+        displayName: Number Of Other Sources
+        description: number-of-other-sources
+        type: string
+      crossesPartCategory?:
+        displayName: Crosses Part Category
+        description: crosses-part-category
+        type: string
+      seGrade?:
+        displayName: SE Grade
+        description: se-grade
+        type: string
+      lastUpdatedate?:
+        displayName: Last Update date
+        description: last-update-date
+        type: string
+      yeolComment?:
+        displayName: Yeol Comment
+        description: yeol-comment
+        type: string
+  history?:
+    type: object
+    properties:
+      datasheet?:
+        type: datasheet[]
+      lifecycle?:
+        type: lifecycle[]
+  productImage?:
+    type: object
+    properties:
+      productImageSmall?:
+        displayName: Product Image Small
+        description: product-image-small
+        type: string
+      productImageLarge?:
+        displayName: Product Image Large
+        description: product-image-large
+        type: string
+  ecadModelsData?:
+    type: object
+    properties:
+      ecadModelsData?:
+        type: object
+        properties:
+          ecadurl?:
+            displayName: ECADURL
+            description: ecadurl
+            type: string
+  designResourcesData?:
+    type: object
+    properties:
+      pinOutData?:
+        type: object
+        properties:
+          pinOuts?:
+            displayName: Pin Outs
+            description: pin-outs
+            type: string
+          cadPinOuts?:
+            displayName: Cad Pin Outs
+            description: pin-outs
+            type: string
+      refDesignData?:
+        displayName: Ref Design Data
+        description: ref-design-data
+        type: string
+  priceBreaksData?:
+    type: object
+    properties:
+      priceBreaksDto?:
+        type: price-breaks-dto[]
+  allPackageData?:
+    type: object
+    properties:
+      feature?:
+        type: features[]

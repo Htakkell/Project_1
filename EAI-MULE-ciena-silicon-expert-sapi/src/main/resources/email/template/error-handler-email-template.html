@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Error Handler Email</title>
+</head>
+<body>
+
+<div style="width:100%;" align="left">
+
+    <table width="583" border="0" cellspacing="0" cellpadding="0">
+     
+      
+        <tr>
+				<td align="center" valign="top">
+				    
+                	<div style="color:#E92E1F; font-family:Times New Roman, Times, serif; font-size:15px;"><b><u>ERROR NOTIFICATION</u></b></div>
+                  </td>
+				  </tr>
+				  
+              <tr>
+                <td align="left" valign="top" style="font-family:Times New Roman, Times, serif; font-size:15px; color:#525252;">
+                
+                <div style="color:#000000; font-family:Times New Roman, Times, serif; font-size:15px;"> <br>Dear User,<br><br><br><u><b>Error Details </b>: </u></b>
+					<br><br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mule Environment</b>: #[payload.env]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Error Time</b>: #[payload.errorDateTime] 
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Correlation Id</b>: #[payload.correlationId]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Core Error Handler Error Description</b>: #[payload.description]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application Name</b>: #[payload.app_name]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Source App</b>: #[payload.src_app_name]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Target App</b>: #[payload.target_app_name]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Source Obj</b>: #[payload.source_object]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Target Obj</b>: #[payload.target_object]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flow Name</b>: #[payload.flow_name]
+					<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; App Run Time </b>: #[payload.app_runtime]
+				<br><br>Thanks,<br>Salesforce- Mule Prod Support Team<br><br></div>
+                
+</td>
+      </tr>
+	  <br><br>
+      <tr>
+	  <br><br>
+        <td align="left" valign="top" bgcolor="#3d90bd" style="background-color:#3d90bd;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="35">&nbsp;</td>
+            <td height="20" align="center" valign="middle" style="color:#FFFFFF; font-size:13px; font-family:Times New Roman, Times, serif;"><br><br><b>This is an auto-generated e-mail. Do not reply to this e-mail Id.</b> </td>
+            
+          </tr>
+       
+      </tr>
+  </table>
+    <br>
+    <br>
+
+</div>
+
+</body>
+</html>

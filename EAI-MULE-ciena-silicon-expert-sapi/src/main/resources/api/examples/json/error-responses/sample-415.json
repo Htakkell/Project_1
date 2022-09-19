@@ -1,0 +1,5 @@
+{
+	"isSuccess" : false,
+	"errorCode" : 415,
+	"errorText" : "Unsupported Media Type : The server will not accept the request, because the mediatype is not supported"
+}

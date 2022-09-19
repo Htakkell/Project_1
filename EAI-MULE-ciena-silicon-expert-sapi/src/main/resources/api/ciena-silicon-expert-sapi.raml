@@ -1,0 +1,118 @@
+#%RAML 1.0
+title: ciena-silicon-expert-sapi
+version: v1
+mediaType: [ application/json ]
+protocols: [ HTTP, HTTPS ]
+baseUri: https://ciena-silicon-expert/api/{version}
+
+securedBy: [ oauth_2_0, client_credentials]
+securitySchemes:
+  oauth_2_0: !include security-schemas/oauth_2_0.raml
+  client_credentials: !include security-schemas/client-credentials.raml
+  
+traits:
+  standard-error-responses: !include traits/standard-error-responses.raml
+
+types:
+  part-data: !include types/part-data-schema.raml
+  country-of-origin: !include types/country-of-origin-schema.raml
+  result-dto: !include types/request-dto-schema.raml
+  man-counterfeit-reports: !include types/man-counterfeit-reports-schema.raml
+  authorized-distributors-with-stock-reports: !include types/authorized-distributors-with-stock-reports-schema.raml
+  features: !include types/features-schema.raml
+  chemical-dto: !include types/chemical-dto-schema.raml
+  pcn-dto: !include types/pcn-dto-schema.raml
+  cross-dto: !include types/cross-dto-schema.raml
+  franchised-inventory-dto: !include types/franchised-inventory-dto-schema.raml
+  datasheet: !include types/datasheet-schema.raml
+  lifecycle: !include types/lifecycle-schema.raml
+  price-breaks-dto: !include types/price-breaks-dto-schema.raml
+  authenticate-users-response: !include types/authenticate-users-response-schema.raml
+  parts-response: !include types/products-parts-response-schema.raml
+  part-details-response: !include types/products-parts-details-response-schema.raml
+  health-check: !include types/health-check.raml
+
+/products:  
+  /authenticate-users:
+    displayName: authenticate users
+    description: authenticate users for products silicon expert api
+    is: [standard-error-responses]
+    get:
+      description: authenticate users.
+      queryParameters:
+        login: 
+          type: string
+          description: login name
+          required: true
+          example: "user_name"
+        apiKey: 
+          type: string
+          description: API Key
+          required: true
+          example: "##api@key**"
+      responses:
+        200:
+          description : Success
+          body:
+            application/json:
+              type : authenticate-users-response
+              example: !include examples/json/authenticate-users-sample-response.json
+  /parts:
+    displayName: product parts
+    description: Product parts information of silicon expert api
+    is: [standard-error-responses]
+    get:
+      description: retrive product parts information.
+      queryParameters:
+        partNumberManufacturerInfo: 
+          type: string
+          description: part number and manufacturer values are separated by double colon sign and multiple part number - manufacturer combinations will be separated by comma.
+          required: true
+          example: "part1::manufacturer1,part2::manufacturer2"
+        jSessionId: 
+          type: string
+          description: Session Id
+          required: true
+          example: "J37pSJjk72Gl16QwCb4UW5SkVyQQ"
+      responses:
+        200:
+          description : Success
+          body:
+            application/json:
+              type : parts-response
+              example: !include examples/json/products-parts-sample-response.json
+  /part-details:
+    displayName: Product part details
+    description: Product part details information of silicon expert api
+    is: [standard-error-responses]
+    get:
+      description: retrive product part details information.
+      queryParameters:
+        comIds: 
+          type: string
+          description: comma separated com ids
+          required: true
+          example: "30667194,30621967"
+        jSessionId: 
+          type: string
+          description: Session Id
+          required: true
+          example: "J37pSJjk72Gl16QwCb4UW5SkVyQQ"
+      responses:
+        200:
+          description : Success
+          body:
+            application/json:
+              type : part-details-response
+              example: !include examples/json/products-part-details-sample-response.json
+/health-check:
+  displayName: Health Check Resource
+  description: The health check resource will be used to provide information on the API health to the functional monitoring system.
+  is: [standard-error-responses]
+  get:
+    responses: 
+      200:
+        body: 
+          application/json:
+            type: health-check
+            example: !include examples/json/health-check.json

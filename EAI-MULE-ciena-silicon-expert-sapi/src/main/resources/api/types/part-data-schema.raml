@@ -1,0 +1,89 @@
+#%RAML 1.0 DataType
+displayName: Part Data Response object
+type: object
+properties:
+  requestedPart?:
+    displayName: Requested Part
+    description: requested-part
+    type: string
+  requestedManufacturer?:
+    displayName: Requested Manufacturer
+    description: requested-manufacturer
+    type: string
+  requestedManufacturerId?:
+    displayName: Requested Manufacturer Id
+    description: requested-manufacturer-id
+    type: string
+  partList?:
+    type: object
+    properties:
+      partDto?:
+        type: object
+        properties:
+          comId?:
+            displayName: Com Id
+            description: com-id
+            type: string
+          partNumber?:
+            displayName: Part Number
+            description: part-number
+            type: string
+          manufacturer?:
+            displayName: Manufacturer
+            description: manufacturer
+            type: string
+          plName?:
+            displayName: Pl Name
+            description: pl-name
+            type: string
+          "description?":
+            displayName: "Description"
+            description: "description"
+            type: string
+          datasheet?:
+            displayName: Datasheet
+            description: datasheet
+            type: string
+          lifecycle?:
+            displayName: Lifecycle
+            description: lifecycle
+            type: string
+          rohs?:
+            displayName: ROHS
+            description: rohs
+            type: string
+          rohsVersion?:
+            displayName: ROHS Version
+            description: rohs-version
+            type: string
+          matchRating?:
+            displayName: Match Rating
+            description: match-rating
+            type: string
+          aliasData?:
+            displayName: Alias Data
+            description: alias-data
+            type: string
+          taxonomyPath?:
+            displayName: Taxonomy Path
+            description: taxonomy-path
+            type: string
+          taxonomyPathId?:
+            displayName: Taxonomy Path Id
+            description: taxonomy-path-id
+            type: string
+          ecadModels?:
+            type: object
+            properties:
+              schematicSymbol?:
+                displayName: Schematic Symbol
+                description: schematic-symbol
+                type: string
+              pcbFootprint?:
+                displayName: PCB Footprint
+                description: pcb-footprint
+                type: string
+              model3d?:
+                displayName: Model 3D
+                description: model-3d
+                type: string

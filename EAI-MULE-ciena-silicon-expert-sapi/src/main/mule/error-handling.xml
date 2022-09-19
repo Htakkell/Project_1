@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger"
+	xmlns:email="http://www.mulesoft.org/schema/mule/email" xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:sqs="http://www.mulesoft.org/schema/mule/sqs"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/sqs http://www.mulesoft.org/schema/mule/sqs/current/mule-sqs.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+	<error-handler name="sync-error-handler-with-propagate-option"
+		doc:id="06498b21-1e75-4090-8e11-d9c61ef2b71a">
+
+		<on-error-propagate enableNotifications="true"
+			logException="true" doc:name="On Error Propagate(TECHNICAL)" doc:id="e5bd6b18-8f5b-44ba-bfe2-077a44cea36a"
+			type="HTTP:CONNECTIVITY, HTTP:SERVICE_UNAVAILABLE, HTTP:TIMEOUT, STREAM_MAXIMUM_SIZE_EXCEEDED">
+			<json-logger:logger doc:name="Logger" doc:id="69f50bae-cce1-4f0b-a6e7-496c1b1d714b" config-ref="JSON_Logger_Config" message="APPLICATION &lt;#[app.name]&gt; :: ERRORED :: ERROR HANDLER &lt;#[flow.name]&gt; :: TECHNICAL EXCEPTION" tracePoint="EXCEPTION">
+			<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(error.description)
+}]]]></json-logger:content>
+		</json-logger:logger>
+			<set-variable value='TECHNICAL' doc:name="Set errorCategory" doc:id="8f6b32d0-a319-4a6e-94e0-f214e95d542f" variableName="errorCategory"/>
+			<async doc:name="Async" doc:id="d525a8a2-c2dc-46c5-a4ea-83e0e9ad1c78" >
+				<flow-ref doc:name="Flow Reference:error-handling:processExceptionFlow" doc:id="9afe9e64-74cc-464e-8002-0092ff0c9802" name="error-handling:processExceptionFlow" />
+			</async>
+
+		
+</on-error-propagate>
+
+		<on-error-propagate enableNotifications="true"
+			logException="true" doc:name="On Error Propagate(BUSINESS)" doc:id="4785a4e6-6275-4aae-b372-9590b3be6ad7"
+			type="HTTP:BAD_REQUEST, HTTP:FORBIDDEN, HTTP:METHOD_NOT_ALLOWED, HTTP:NOT_ACCEPTABLE, HTTP:NOT_FOUND, HTTP:SECURITY, HTTP:UNAUTHORIZED, HTTP:UNSUPPORTED_MEDIA_TYPE">
+
+			<json-logger:logger doc:name="Logger" doc:id="89a40b71-6858-44a3-abd8-99afbf5721e1" config-ref="JSON_Logger_Config" message="APPLICATION &lt;#[app.name]&gt; :: ERRORED :: ERROR HANDLER &lt;#[flow.name]&gt; :: BUSINESS EXCEPTION" tracePoint="EXCEPTION">
+			<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(error.description)
+}]]]></json-logger:content>
+		</json-logger:logger>
+			<set-variable value='BUSINESS' doc:name="Set errorCategory" doc:id="88d8e55b-f2b7-49b5-aa1e-bcf8b3cb5e8d" variableName="errorCategory" />
+			<async doc:name="Async" doc:id="bb781125-9104-4400-a213-d33724f9d00d" >
+				<flow-ref doc:name="Flow Reference:error-handling:processExceptionFlow" doc:id="fa74af45-e654-4784-949d-c7be5686d192" name="error-handling:processExceptionFlow" />
+			</async>
+
+		
+</on-error-propagate>
+
+		<on-error-propagate enableNotifications="true"
+			logException="true" doc:name="On Error Propagate(GENERIC)"
+			doc:id="f94f5b3a-67f6-4a73-b598-be13dd8235bc" type="ANY">
+
+			<json-logger:logger doc:name="Logger" doc:id="569d29d1-c7ec-41cc-b137-6aafadb31ade" config-ref="JSON_Logger_Config" message="APPLICATION &lt;#[app.name]&gt; :: ERRORED :: ERROR HANDLER &lt;#[flow.name]&gt; :: GENERIC EXCEPTION" tracePoint="EXCEPTION">
+			<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(error.description)
+}]]]></json-logger:content>
+		</json-logger:logger>
+			<set-variable value='GENERIC' doc:name="Set errorCategory" doc:id="d20d1ca5-e23f-4ebb-956b-69a52134ef04" variableName="errorCategory" />
+			<async doc:name="Async" doc:id="866218ee-df04-4069-95aa-dbd91f69338f" >
+				<flow-ref doc:name="Flow Reference:error-handling:processExceptionFlow" doc:id="a73241e9-df19-4ce0-91f3-aecaec48e9bf" name="error-handling:processExceptionFlow" />
+			</async>
+
+		
+</on-error-propagate>
+
+
+
+
+	</error-handler>
+
+	<error-handler name="sync-error-handler-with-continue-option"
+		doc:id="06498b21-1e75-4090-8e11-d9c61ef2b71a">
+
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue(TECHNICAL)" doc:id="e5bd6b18-8f5b-44ba-bfe2-077a44cea36a"
+			type="ANY">
+
+			<json-logger:logger doc:name="Logger" doc:id="147885ec-eeaf-4960-8308-b2c45da322a2" config-ref="JSON_Logger_Config" message="APPLICATION &lt;#[app.name]&gt; :: ERRORED :: ERROR HANDLER &lt;#[flow.name]&gt; :: TECHNICAL EXCEPTION" tracePoint="EXCEPTION">
+			<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(error.description)
+}]]]></json-logger:content>
+		</json-logger:logger>
+			<set-variable value='TECHNICAL' doc:name="Set errorCategory" doc:id="dd9209bf-c392-4ea5-b322-34f8ae3228df" variableName="errorCategory" />
+			<async doc:name="Async" doc:id="a4a8b6f7-97d9-482f-a0a3-acb121949097" >
+				<flow-ref doc:name="error-handling:processExceptionFlow" doc:id="65e084da-0932-4bcb-95ab-dce8ad328c26" name="error-handling:processExceptionFlow" />
+			</async>
+
+		
+</on-error-continue>
+
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue(BUSINESS)" doc:id="4785a4e6-6275-4aae-b372-9590b3be6ad7"
+			type="ANY">
+
+			<json-logger:logger doc:name="Logger" doc:id="91012384-ae3b-4644-8253-294e5fcfdc39" config-ref="JSON_Logger_Config" message="APPLICATION &lt;#[app.name]&gt; :: ERRORED :: ERROR HANDLER &lt;#[flow.name]&gt; :: BUSINESS EXCEPTION" tracePoint="EXCEPTION">
+			<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(error.description)
+}]]]></json-logger:content>
+		</json-logger:logger>
+			<set-variable value='BUSINESS' doc:name="Set errorCategory" doc:id="edf1b31c-56cf-46b5-8dee-68d292af5a6d" variableName="errorCategory" />
+			<async doc:name="Async" doc:id="2feac2b5-7ee9-407e-92c5-1ea4e8b765b5" >
+				<flow-ref doc:name="error-handling:processExceptionFlow" doc:id="a5d3db84-7705-4e34-b47c-ed78afed5931" name="error-handling:processExceptionFlow" />
+			</async>
+
+		
+</on-error-continue>
+
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue(GENERIC)" doc:id="f94f5b3a-67f6-4a73-b598-be13dd8235bc"
+			type="ANY">
+
+			<json-logger:logger doc:name="Logger" doc:id="5f23e63e-f1f7-4922-8556-590873526f3c" config-ref="JSON_Logger_Config" message="APPLICATION &lt;#[app.name]&gt; :: ERRORED :: ERROR HANDLER &lt;#[flow.name]&gt; :: GENERIC EXCEPTION" tracePoint="EXCEPTION">
+			<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(error.description)
+}]]]></json-logger:content>
+		</json-logger:logger>
+			<set-variable value='GENERIC' doc:name="Set errorCategory" doc:id="85986464-62aa-41fb-9840-cdc3d2dd3155" variableName="errorCategory" />
+			<async doc:name="Async" doc:id="a093540f-4192-42b9-b92d-154fd9610ed0" >
+				<flow-ref doc:name="error-handling:processExceptionFlow" doc:id="caab705c-faca-4019-83da-7e57b9b88856" name="error-handling:processExceptionFlow" />
+			</async>
+
+		
+</on-error-continue>
+	
+	</error-handler>
+	<flow name="error-handling:processExceptionFlow" doc:id="3ea7ffa4-1192-4136-94d0-bf0fd107badf" >
+		<logger level="INFO" doc:name="Logger" doc:id="ab36cf50-31d8-4c40-bc04-8a3101330750" message="#[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="1f824e59-55fa-4753-90a4-49776226d4cd" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="error_payload" ><![CDATA[%dw 2.0
+output application/java
+---
+payload]]></ee:set-variable>
+				<ee:set-variable variableName="p_flow_name" ><![CDATA["sub-flow-api-common-notification-invoke"]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<ee:transform doc:name="Create Error Message" doc:id="9200738a-80d0-45cc-ab9c-16fd63aa0713">
+					<ee:message>
+						<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+		description: error.description default "description not found",
+		errorType: error.errorType default "error Type not found",
+		//errorMessage: error.errorMessage default "error message not found",
+		//childErrors: error.childErrors default "child errors not found",
+		errorDateTime: now() as DateTime {format: "yyyy-MM-dd'T'HH:mm:ss"},
+		correlationId: correlationId,
+		instanceId: correlationId,
+		env: p('interface.environment'),
+		app_name : p('interface.name'),
+		app_id: p('interface.app_id'),
+		src_app_name: p('interface.source_system'),
+		target_app_name: p('interface.target_system'),
+		api_type: p('interface.api_type'),
+		source_object: p('interface.source_object'),
+		target_object: p('interface.target_object'),
+		flow_name: vars.p_flow_name,
+		app_runtime: p('interface.app_runtime')
+}]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+		
+		<!-- 
+		<ee:transform doc:name="Convert Error Message To String" doc:id="d45a0d80-c554-4918-9ae5-a3c88d9b227f">
+					<ee:message>
+						<ee:set-payload><![CDATA[ %dw 2.0
+  output application/java
+  -&#45;&#45;
+  write(payload, "application/json")]]></ee:set-payload>
+					</ee:message>
+				</ee:transform> -->
+		<parse-template doc:name="Parse Template" doc:id="72182e06-85bd-4683-a18a-ebf37ae7f079" location="email\template\error-handler-email-template.html"/>
+		<set-variable value="#[payload]" doc:name="Set Variable" doc:id="66a8919e-4cf7-42df-940b-17b9843dd3d1" variableName="p_email_body"/>
+		<ee:transform doc:name="Transform Message" doc:id="2d5aa7bb-bc1a-4dc3-b448-726a53f7f014" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    "email_id": p('interface.to_email_id'),
+    "email_subject": p('interface.email_subject'),
+    "email_body": vars.p_email_body,
+    "sending_process_name": p('interface.name'),
+    "mode": "Y",
+    "type": "SNOW or NON-SNOW",
+    "attribute1": correlationId,
+    "attribute2": write(vars.error_payload, 'application/json'),
+    "attribute4": "E"
+  }
+]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<flow-ref doc:name="Flow Ref : sub-flow-api-common-notification-invoke" doc:id="3dd3bd65-e444-4177-a84e-ea65103a466d" name="sub-flow-api-common-notification-invoke"/>
+		
+		
+
+		
+<!-- 		
+		<email:send doc:name="Send" doc:id="ce2a6ea6-d545-422e-961c-1dd3ba31845f" config-ref="Email_SMTP" fromAddress="vmandala@ciena.com" subject="Test email from Error Handler">
+			<email:to-addresses >
+				<email:to-address value="vmandala@ciena.com" />
+			</email:to-addresses>
+			<email:body contentType="text/html" encoding="UTF-8"/>
+		</email:send>
+	
+	
+	 -->
+		<error-handler >
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="2badb70b-79cc-457b-abd0-fd2b0d66d45d" >
+				<ee:transform doc:name="Email Format" doc:id="ecdb879a-8c98-4b03-ac78-728b4abbd08b">
+					<ee:message>
+						<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+[
+  {
+    "email_id": p('interface.to_email_id'),
+    "email_subject": p('interface.to_email_subject'),
+    "email_body": "Error Handling Failed",
+    "sending_process_name": p('interface.name'),
+    "mode": "Y",
+    "type": "SNOW or NON-SNOW",
+    "attribute1": correlationId,
+    "attribute2": write(vars.error_payload, 'application/json'),
+    "attribute4": "E"
+  }
+]]]></ee:set-payload>
+					</ee:message>
+					<ee:variables>
+					</ee:variables>
+				</ee:transform>
+			</on-error-propagate>
+		</error-handler>
+			
+	</flow>
+
+
+</mule>

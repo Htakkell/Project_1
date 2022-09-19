@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+    <flow name="ciena-silicon-expert-sapi-main">
+        <http:listener config-ref="${https.config}" path="${https.resourcePath}">
+            <http:response statusCode="#[vars.httpStatus default 200]" reasonPhrase='#[vars.httpDescription default "Success"]'>
+                <http:body ><![CDATA[#[output application/json --- payload]]]></http:body>
+				<http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]" reasonPhrase='#[vars.httpDescription default "Internal Server Error"]'>
+                <http:body><![CDATA[#[output application/json --- payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+        <logger level="INFO" doc:name="Logger" doc:id="bd666efc-f286-4880-aa5d-ad90c3b15d00" />
+		<json-logger:logger doc:name="Logger" doc:id="cf81e7ba-09b0-4d8b-8b1d-9f94f44ed602" config-ref="JSON_Logger_Config" priority="DEBUG" message="Received request via HTTP(S) - Request Data : ">
+			<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(payload)
+}]]]></json-logger:content>
+		</json-logger:logger>
+		<apikit:router config-ref="ciena-silicon-expert-sapi-config" />
+		<error-handler ref="sync-error-handler-with-propagate-option">  
+        </error-handler>
+    </flow>
+    <flow name="ciena-silicon-expert-sapi-console">
+        <http:listener config-ref="${https.config}" path="/console/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:console config-ref="ciena-silicon-expert-sapi-config"/>
+        <error-handler>
+        	<on-error-propagate type="APIKIT:NOT_FOUND">
+			<json-logger:logger doc:name="Logger" doc:id="602b0ada-71ed-439f-820d-0b807d72f854" config-ref="JSON_Logger_Config" message="Error post receiving request through APIKit console : " tracePoint="EXCEPTION" priority="ERROR">
+					<json-logger:content ><![CDATA[#[import modules::JSONLoggerModule output application/json ---
+{
+    payload: JSONLoggerModule::stringifyNonJSON(error.description) 
+}]]]></json-logger:content>
+				</json-logger:logger>
+				<set-variable value='#["Resource Not Found"]' doc:name="httpDescription" doc:id="8b50b45c-db0e-4d8f-8caf-d432948ea89f" variableName="httpDescription"/>
+			<ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="Json Error Response">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"isSuccess" : false,
+	"errorCode" : 404,
+	"errorText" : error.description
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[404]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+        </error-handler>
+    </flow>
+    <flow name="get:\health-check:ciena-silicon-expert-sapi-config">
+        <flow-ref doc:name="Flow Ref : health-check-implementation-sub-flow" doc:id="6a3d487d-a7ea-4a37-a133-90fc8cc42e14" name="health-check-implementation-sub-flow"/>
+    	<logger level="INFO" doc:name="Logger" doc:id="a0e6223c-ef0a-4c3d-a2c4-4d74242b769f" message="Request processed successfully..!!"/>
+    </flow>
+    <flow name="get:\products\part-details:ciena-silicon-expert-sapi-config">
+        <flow-ref doc:name="Flow Ref : product-part-details-sub-flow" doc:id="4434c2fe-8681-4c1a-8638-c1f5dfbfe1eb" name="product-part-details-sub-flow"/>
+    	<logger level="INFO" doc:name="Logger" doc:id="20a3e07d-556e-47df-ad2e-ecec9bc38cc7" message="Request processed successfully..!!"/>
+    </flow>
+    <flow name="get:\products\authenticate-users:ciena-silicon-expert-sapi-config">
+        <flow-ref doc:name="Flow Ref : product-authenticate-users-sub-flow" doc:id="fc1c8d67-ac43-4a28-9baf-07a28d323b5f" name="product-authenticate-users-sub-flow"/>
+    	<logger level="INFO" doc:name="Logger" doc:id="d38e65e3-27ce-43b0-b97f-36fe56319443" message="Request processed successfully..!!"/>
+    </flow>
+    <flow name="get:\products\parts:ciena-silicon-expert-sapi-config">
+        <flow-ref doc:name="Flow Ref : product-parts-sub-flow" doc:id="9cec6bfa-d28f-4911-9468-0bc96ba4223a" name="product-parts-sub-flow"/>
+    	<logger level="INFO" doc:name="Logger" doc:id="0a62c0e3-9b4c-4590-a9e9-bab48602b8be" message="Request processed successfully..!!"/>
+    </flow>
+</mule>

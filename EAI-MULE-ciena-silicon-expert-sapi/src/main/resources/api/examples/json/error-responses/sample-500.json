@@ -1,0 +1,5 @@
+{
+	"isSuccess" : false,
+	"errorCode" : 500,
+	"errorText" : "Internal Server Error : The request was not completed. The server met an unexpected condition."
+}

@@ -1,0 +1,7 @@
+#Secure Configuration Properties
+
+notification:
+  client_id : "![LUGuI5Ane3W31qlV7BPhllIfMnRKdD4y]"
+  client_secret : "![FXl+zuHryA35jh1rqZ251O7qd+oG81DrMr4lnda+fzA1esyMhYkJ2io8viHygURl]"
+
+##### Notification API Configuration #####

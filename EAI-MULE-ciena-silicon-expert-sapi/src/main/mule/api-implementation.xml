@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+    <sub-flow name="product-authenticate-users-sub-flow">
+        <logger level="INFO" doc:name="Logger" doc:id="26ea4ff8-f0b6-451d-aeda-ea55f6bd7608" message="product-authenticate-users-sub-flow : Starts"/>
+		<http:request method="GET" doc:name="Request : Get authenticateUser" doc:id="d8061889-45f1-482f-b0ff-0794ae1ca960" config-ref="Silicon_Expert_HTTP_Request_configuration" path="${siliconExpert.authenticateUserPath}" responseTimeout="${siliconExpert.responseTimeout}">
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"login" : attributes.queryParams.login,
+	"apiKey" : attributes.queryParams.apiKey
+}]]]></http:query-params>
+		</http:request>
+		<set-variable value="#[attributes]" doc:name="Set responseAttributes Variable" doc:id="f0fed937-6117-44e4-a8d1-6bc5991fbf87" variableName="responseAttributes"/>
+		<ee:transform doc:name="Response : Authenticate users" doc:id="d34a69d0-4704-43fc-8101-8928a1b6ef05" >
+			<ee:message >
+				<ee:set-payload resource="dwl/authentication-users.dwl" />
+			</ee:message>
+		</ee:transform>
+		<json-logger:logger doc:name="Logger" doc:id="fbd71444-425f-4af2-805f-932b03e3583c" config-ref="JSON_Logger_Config" message="Response Payload : " tracePoint="END" priority="DEBUG"/>
+		<logger level="INFO" doc:name="Logger" doc:id="42ed6a3d-4ee8-4d7c-865f-836b51195199" message="product-authenticate-users-sub-flow : Ends"/>
+    </sub-flow>
+    <sub-flow name="product-parts-sub-flow">
+        <logger level="INFO" doc:name="Logger" doc:id="57f30c91-8df1-4549-88f3-d5d6265dc503" message="product-parts-sub-flow : Starts"/>
+		<ee:transform doc:name="Set queryParams variable" doc:id="da81ee1a-e266-4b69-b1ce-f349159c43a6" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="queryParams" ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"partNumber" :  write(((attributes.queryParams.partNumberManufacturerInfo default "" splitBy "||") map using (elemnents = $ splitBy "::") {
+	    partNumber : elemnents[0],
+	    manufacturer : elemnents[1] 
+	}), 'application/json'),
+	"JSESSIONID" : attributes.queryParams.jSessionId
+}]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<http:request method="GET" doc:name="Request : Get part list" doc:id="262f080a-c430-4ed2-b7f5-dc0bd8490738" config-ref="Silicon_Expert_HTTP_Request_configuration" path="${siliconExpert.partsPath}" responseTimeout="${siliconExpert.responseTimeout}">
+			<http:query-params ><![CDATA[#[vars.queryParams]]]></http:query-params>
+		</http:request>
+		<ee:transform doc:name="Response : parts list" doc:id="50d64668-7787-4b88-b145-79b9ed4a8fe2" >
+			<ee:message >
+				<ee:set-payload resource="dwl/parts-list.dwl" />
+			</ee:message>
+		</ee:transform>
+		<json-logger:logger doc:name="Logger" doc:id="d8438326-5a10-4879-b338-4db571abd763" config-ref="JSON_Logger_Config" message="Response Payload : " tracePoint="END" priority="DEBUG"/>
+		<logger level="INFO" doc:name="Logger" doc:id="8ed415b0-eda7-40e1-acd7-ec9cd5f1235a" message="product-parts-sub-flow : Ends"/>
+    </sub-flow>
+    <sub-flow name="product-part-details-sub-flow">
+        <logger level="INFO" doc:name="Logger" doc:id="ad8fed75-636c-44d8-bcb8-ff91ff0ba3e6" message="product-part-details-sub-flow : Starts"/>
+		<http:request method="GET" doc:name="Request : Get part details" doc:id="d2969235-6df2-4d95-924b-2011bc312d54" config-ref="Silicon_Expert_HTTP_Request_configuration" path="${siliconExpert.partDetailsPath}" responseTimeout="${siliconExpert.responseTimeout}">
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"JSESSIONID" : attributes.queryParams.jSessionId,
+	"comIds" : attributes.queryParams.comIds
+}]]]></http:query-params>
+		</http:request>
+		<ee:transform doc:name="Response : Part Details" doc:id="cefe1c3f-7314-4173-9095-4fa0ff02b7f2" >
+			<ee:message >
+				<ee:set-payload resource="dwl\part-details.dwl" />
+			</ee:message>
+		</ee:transform>
+		<json-logger:logger doc:name="Logger" doc:id="200dd1e1-d94f-4a5b-9295-fa6f506a27d7" config-ref="JSON_Logger_Config" message="Response Payload : " tracePoint="END" priority="DEBUG"/>
+		<logger level="INFO" doc:name="Logger" doc:id="853fb7d3-d341-402c-a5a0-733194ee538c" message="product-part-details-sub-flow : Ends"/>
+    </sub-flow>
+    <sub-flow name="health-check-implementation-sub-flow">
+        <logger level="INFO" doc:name="Logger" doc:id="a282b51a-d8e8-4a10-a546-584f970f5723" message="health-check-implementation-sub-flow : Starts"/>
+		<ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="health-check implementation">
+            <ee:message>
+				<ee:set-payload resource="dwl/health-check-response.dwl" />
+            </ee:message>
+        </ee:transform>
+		<json-logger:logger doc:name="Logger" doc:id="97712456-c0d2-4302-bd21-42ab54bb7328" config-ref="JSON_Logger_Config" message="Response Payload : " tracePoint="END" priority="DEBUG"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c0bf6f69-1bc7-4e10-8b9d-2491a42dee6a" message="health-check-implementation-sub-flow : Ends"/>
+    </sub-flow>
+</mule>

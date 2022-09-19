@@ -1,0 +1,501 @@
+{
+    "status": {
+        "code": "0",
+        "message": "Successful Operation",
+        "success": "true",
+        "requestId": "2741757884288179"
+    },
+    "results": {
+        "resultDto": [
+            {
+                "requestedComId": "30667194",
+                "summaryData": {
+                    "dataProviderId": "30667194",
+                    "partNumber": "CRCW02010000Z0ED",
+                    "manufacturer": "Vishay",
+                    "manufacturerId": "1645",
+                    "partDescription": "Res Thick Film 0201 0 Ohm Pad SMD T/R",
+                    "datasheet": "http://download.siliconexpert.com/pdfs2/2021/6/20/9/44/19/55581/vsh_/manual/crcw0201e3.pdf",
+                    "onlineSupplierDatasheetUrl": "https://www.vishay.com/doc?20052",
+                    "radHard": "Unknown",
+                    "doseLevel": "N/A",
+                    "taxonomyPath": "Resistors > Fixed Resistors > Resistor Fixed Single-Surface Mount",
+                    "taxonomyPathIds": "103729 > 104224 > 3577",
+                    "eccn": "EAR99",
+                    "unspsc": "32121612",
+                    "otherSources": "23",
+                    "lastCheckDate": "Jun 20, 2021",
+                    "partMarking": "",
+                    "introductionDate": "Mar 11, 2011",
+                    "militarySpecifications": "",
+                    "partAliases": {
+                        "partAlias": "CRCW02010R0ET7E3"
+                    },
+                    "esdClass": "N/A",
+                    "esdSourceofInformation": "http://download.siliconexpert.com/pdfs2/2021/6/20/9/44/19/55581/vsh_/manual/crcw0201e3.pdf",
+                    "authorizedDistributors": "10",
+                    "genericName": "",
+                    "familyName": "CRCW0201 e3",
+                    "aecNumber": "",
+                    "aecQualified": "No",
+                    "automotive": "No",
+                    "supplierCageCode": "18612",
+                    "eurohs": "Yes",
+                    "rohsVersion": "2011/65/EU, 2015/863",
+                    "scheduleB": "",
+                    "htsusa": "",
+                    "ppap": "No",
+                    "countriesOfOrigin": {
+                        "countryOfOrigin": [
+                            {
+                                "country": "Israel"
+                            },
+                            {
+                                "country": "Taiwan",
+                                "source": "http://download.siliconexpert.com/pdfs/2011/3/3/0/8/35/355/vsh_/manual/pcn-dbr-003-2011-rev-0.pdf"
+                            }
+                        ]
+                    },
+                    "usChinaTariffImpact": "Not Likely Impacted",
+                    "plName": "Resistor Fixed Single-Surface Mount"
+                },
+                "qualifications": {
+                    "energyEfficiency": {
+                        "enablingEnergyEfficiency": "No",
+                        "sourceOfInformation": ""
+                    },
+                    "agencyApprovals": {
+                        "agency": {
+                            "agnecy": "Not Qualified to UL and Other Agencies",
+                            "standard": "N/R",
+                            "standardDetails": "N/R",
+                            "fileNumber": "N/R",
+                            "certificationDocument": ""
+                        }
+                    },
+                    "reliability": {
+                        "fitDetails": {
+                            "fitDetail": {
+                                "fit": "0.1(Max)",
+                                "conditionName": "N/A",
+                                "conditionValue": "N/A"
+                            }
+                        },
+                        "mtbfDetails": {
+                            "mtbfDetail": {
+                                "mtbf": "10000000000(Max)",
+                                "conditionName": "N/A",
+                                "conditionValue": "N/A"
+                            }
+                        },
+                        "sourceOfInformation": "http://download.siliconexpert.com/pdfs/2018/1/31/23/37/44/133/vsh_/manual/recs_collectedfunctions_vishay__407914cra.msg",
+                        "flammabilityRating": "IEC 60695-11-5"
+                    }
+                },
+                "lifeCycleData": {
+                    "partStatus": "Active",
+                    "ltbDate": "",
+                    "source": "",
+                    "estimatedYearsToEOL": "7.3",
+                    "estimatedEOLDate": "2028",
+                    "partLifecycleStage": "Mature",
+                    "minimumEstimatedYearsToEOL": "7.3",
+                    "maximumEstimatedYearsToEOL": "7.3",
+                    "lifeCycleRiskGrade": "Medium Risk",
+                    "overallRisk": "26%",
+                    "partCounterfeitReports": "",
+                    "partLifecycleCode": "3"
+                },
+                "fullCounterfeitData": {
+                    "counterfeitOverallRisk": "35 %",
+                    "partNumCounterfeitReportsCount": "0 Report(s)",
+                    "manCounterfeitReportsCount": "21 Report(s)",
+                    "manCounterfeitReports": [
+                        {
+                            "mpn": "SI9120DY-T1-E3",
+                            "supplier": "Vishay Siliconix Div",
+                            "notificationDate": "Dec 09,2010",
+                            "counterfitMethods": "Different Supplier, Old Parts  (Unknown Third party use Old part from different supplier than the affected one)",
+                            "description": "",
+                            "source": "Please Contact GIDEP for Document # [E5Z-A-11-019]"
+                        },
+                        {
+                            "mpn": "VN66AFD",
+                            "supplier": "Siliconix Incorporated (Vishay Americas Inc.)",
+                            "notificationDate": "Sep 14,2016",
+                            "counterfitMethods": "Same Supplier, Old Parts (Unknown Third party use Old part from the same affected supplier)",
+                            "description": "",
+                            "source": "Please Contact GIDEP for Document # [BMG-A-16-02]"
+                        }
+                    ],
+                    "plCounterfeitReportsCount": "0 Report(s)",
+                    "currentLifecycleStatus": "Active",
+                    "timeSinceMarketIntroduction": "10 Year(s)",
+                    "authorizedDistributorswithStockCount": "10 Distributor(s)",
+                    "authorizedDistributorswithStockReports": [
+                        {
+                            "date": "MAY_2021",
+                            "avgQuantity": "366776",
+                            "inventory": "Mouser Electronics~ Farnell~ Element14~ Digi-Key~ Arrow North America~ Arrow Europe~ Verical~ Allied Electronics~ Future Electronics~ Newark"
+                        },
+                        {
+                            "date": "JUN_2021",
+                            "avgQuantity": "483835",
+                            "inventory": "Mouser Electronics~ Farnell~ Element14~ Digi-Key~ Arrow North America~ Verical~ Allied Electronics~ Future Electronics~ Newark"
+                        }
+                    ],
+                    "historicalShortagesInventoryReported": "Yes",
+                    "isPopularPart": "Yes"
+                },
+                "parametricData": {
+                    "features": [
+                        {
+                            "featureName": "High Power Rating",
+                            "featureValue": "",
+                            "featureUnit": "W",
+                            "featureId": "8415203"
+                        },
+                        {
+                            "featureName": "Resistance Value",
+                            "featureValue": "0",
+                            "featureUnit": "Ohm",
+                            "featureId": "59492",
+                            "featureValueDetails": {
+                                "value": "0",
+                                "sign": "",
+                                "unit": "Ohm",
+                                "multiplier": "",
+                                "multiplierValue": "1.0"
+                            }
+                        }
+                    ]
+                },
+                "packagingData": {
+                    "packagingSuffix": "ED",
+                    "packaging": "Tape and Reel",
+                    "quantityOfPackaging": "10000",
+                    "reelDiameter": "7 in",
+                    "reelWidth": "N/A",
+                    "tapePitch": "2 mm",
+                    "tapeWidth": "8 mm",
+                    "feedHolePitch": "N/A",
+                    "holeCenterToComponentCenter": "N/A",
+                    "leadClinchHeight": "N/R",
+                    "componentOrientation": "N/A",
+                    "packagingDocument": "http://download.siliconexpert.com/pdfs2/2021/6/20/9/44/19/55581/vsh_/manual/crcw0201e3.pdf",
+                    "tapeMaterial": "Paper",
+                    "tapeType": "N/A"
+                },
+                "packageData": {
+                    "feature": [
+                        {
+                            "featureName": "Mounting",
+                            "featureValue": "Surface Mount",
+                            "featureUnit": "",
+                            "featureId": "59501"
+                        },
+                        {
+                            "featureName": "Termination Style",
+                            "featureValue": "Pad",
+                            "featureUnit": "",
+                            "featureId": "59500"
+                        }
+                    ]
+                },
+                "manufacturingData": {
+                    "msl": "1",
+                    "leadFinishPlating": "Sn",
+                    "terminalBaseMaterial": "Ag",
+                    "maximumReflowTemperature": "260 °C",
+                    "reflowSolderTime": "40 Sec",
+                    "numberOfReflowCycle": "3",
+                    "standard": "N/A",
+                    "maximumWaveTemperature": "N/R",
+                    "waveSolderTime": "N/R",
+                    "underPlatingMaterial": "Ni",
+                    "reflowTempSource": "http://download.siliconexpert.com/pdfs2/2020/11/25/19/50/13/971398/vsh_/manual/resistor_plasm-display_49324_05102020prop65.xlsx",
+                    "waveTempSource": "",
+                    "underPlatingPorosityFree": ""
+                },
+                "chemicalData": {
+                    "chemicalDto": [
+                        {
+                            "totalMassInGram": "0.00014302049",
+                            "totalMassSummationInGram": "0.00014302049",
+                            "locationName": "Ceramic Substrate",
+                            "homogenousMaterial": "ceramic substrate",
+                            "homogenousMaterialMass": "0.00015964",
+                            "substanceIdentification": "Aluminium oxide",
+                            "normalizedSubstance": "Aluminium oxide",
+                            "substanceGroup": "",
+                            "substanceMass": "0.0000766272",
+                            "ppm": "960000",
+                            "casNumber": "1344-28-1",
+                            "mdsurl": "",
+                            "itemSubItem": "Ceramic Substrate"
+                        },
+                        {
+                            "totalMassInGram": "0.00014302049",
+                            "totalMassSummationInGram": "0.00014302049",
+                            "locationName": "Ceramic Substrate",
+                            "homogenousMaterial": "ceramic substrate",
+                            "homogenousMaterialMass": "0.00015964",
+                            "substanceIdentification": "Magnesium Oxide",
+                            "normalizedSubstance": "Magnesium oxide (MgO)",
+                            "substanceGroup": "",
+                            "substanceMass": "7.982E-7",
+                            "ppm": "10000",
+                            "casNumber": "1309-48-4",
+                            "mdsurl": "",
+                            "itemSubItem": "Ceramic Substrate"
+                        }
+                    ]
+                },
+                "reachData": {
+                    "reachDto": {
+                        "cachedSource": "",
+                        "containsSvhc": "YES",
+                        "svhcExceedThresholdLimit": "NO",
+                        "svhcListVersion": "Jul 08, 2021",
+                        "substanceIdentification": "Lead",
+                        "substanceLocation": "Sn99.9",
+                        "substanceConcentration": "3.426082514",
+                        "sourceType": "Material Declaration",
+                        "reachStatus": "Unaffected",
+                        "casNumber": "7439-92-1",
+                        "svhcDateOfInclusion": "Jun 27, 2018",
+                        "annexXIV": {
+                            "sunsetDate": "",
+                            "applicationDate": "",
+                            "authorizationEntryNumber": "Not Required",
+                            "exemptedCategories": "Not Required"
+                        }
+                    }
+                },
+                "environmentalDto": {
+                    "rohsStatus": "Compliant",
+                    "rohsVersion": "2011/65/EU, 2015/863",
+                    "source": "",
+                    "sourceType": "",
+                    "exemption": "No",
+                    "exemptionType": "",
+                    "exemptionCodes": "",
+                    "exemptionExpirationDate": "",
+                    "rohsIdentifier": "YES",
+                    "leadFree": "Compliant",
+                    "rareEarthElementInformation": "Rare Earth Free",
+                    "conflictMineralStatus": "DRC Conflict Free(Undeterminable for specific parts)",
+                    "conflictMineralStatement": "http://download.siliconexpert.com/pdfs/2014/7/10/13/20/40/243/vsh_/auto/648flictmineralpolicy52714.pdf",
+                    "eiccMembership": "No",
+                    "eiccTemplate": "http://download.siliconexpert.com/pdfs2/2021/7/6/13/2/49/995774/vsh_/manual/746317_vishay_companywide_cmrt_06012021.xlsx",
+                    "eiccTemplateVersion": "Version 6.10",
+                    "halgonFree": "Compliant",
+                    "chinaRohs": {
+                        "chinaRohsStatus": "Unaffected",
+                        "cadmiumConcentration": "<100",
+                        "cadmiumFlag": "O",
+                        "chromiumConcentration": "<1000",
+                        "chromiumFlag": "O",
+                        "leadConcentration": "<1000",
+                        "leadFlag": "O",
+                        "mercuryConcentration": "<1000",
+                        "mercuryFlag": "O",
+                        "pbbConcentration": "<1000",
+                        "pbbFlag": "O",
+                        "pbdeConcentration": "<1000",
+                        "pbdeFlag": "O",
+                        "epup": "e",
+                        "itemSubitemName": "",
+                        "sourceType": "Material Declaration",
+                        "cachedSource": "",
+                        "liveSupplierSource": "N/A"
+                    },
+                    "exemptionDetails": ""
+                },
+                "gidepData": {
+                    "typeOfChange": "Product Change Notice (PC)",
+                    "gidepDescription": "Please search for document number ‘EB7-C-16-0041’ in the GIDEP database for more details.",
+                    "notificationDate": "Apr 06, 2016",
+                    "documentNumber": "EB7-C-16-0041"
+                },
+                "pcnData": {
+                    "pcnDto": {
+                        "lastPcnNumber": "PCN-DBR-011-2016 Rev0",
+                        "lastPcnDate": "Dec 15, 2016",
+                        "lastPcnTypeOfChange": "Assembly Process,Form",
+                        "lastPcnSource": "http://download.siliconexpert.com/pdfs/2017/2/6/2/40/25/732/vsh_/manual/vishay-new-specifications-for-thick-film-resistors-crcw0201-pcn-dbr011rev0.p.pdf",
+                        "lastEolNumber": "",
+                        "lastEolDate": "",
+                        "lastEolSource": ""
+                    }
+                },
+                "pcnDetails": {
+                    "pcnDto": [
+                        {
+                            "pcnNumber": "",
+                            "typeOfChange": "Vendor Acquisition",
+                            "descriptionOfChange": "Dale Electronics has been Acquired by Vishay.",
+                            "pcnSource": "http://download.siliconexpert.com/pdfs/2010/11/25/4/47/58/645/vsh_/manual/pcn_acquisition_fullacquisition_vishay_daleelectronics.pdf",
+                            "notificationDate": "Jan 01, 1985",
+                            "effectiveDate": "",
+                            "lastTimeBuyDate": "",
+                            "lastShipDate": "",
+                            "pcnId": "20857516"
+                        },
+                        {
+                            "pcnNumber": "",
+                            "typeOfChange": "Vendor Acquisition",
+                            "descriptionOfChange": "Draloric Electronic has been acquired by Vishay.",
+                            "pcnSource": "http://download.siliconexpert.com/pdfs/2011/6/5/4/56/48/185/vsh_/manual/pcn_fullacquisition_vishay_draloricelectronic.pdf",
+                            "notificationDate": "Jan 01, 1987",
+                            "effectiveDate": "",
+                            "lastTimeBuyDate": "",
+                            "lastShipDate": "",
+                            "pcnId": "27229944"
+                        }
+                    ]
+                },
+                "replacementData": {
+                    "replacementDto": {
+                        "replacementComId": "402835349",
+                        "replacementPartNumber": "CRCW02010000Z0E_",
+                        "replacementType": "Packaging"
+                    }
+                },
+                "crossData": {
+                    "crossDto": [
+                        {
+                            "crossComId": "67814277",
+                            "crossPartNumber": "MCRE000086",
+                            "crossManufacturer": "Multicomp Pro",
+                            "crossType": "A/Downgrade",
+                            "comment": "Difference in: Temp., Temp. @ Derated Power"
+                        },
+                        {
+                            "crossComId": "28852236",
+                            "crossPartNumber": "CR0201-J/-000GLF",
+                            "crossManufacturer": "Bourns",
+                            "crossType": "A/Downgrade",
+                            "comment": "Difference in: Temp., Temp. @ Derated Power"
+                        }
+                    ]
+                },
+                "averageInventory": "436395",
+                "franchisedInventoryData": {
+                    "franchisedInventoryDto": [
+                        {
+                            "distributor": "Farnell",
+                            "quantity": "203803",
+                            "buyNowLink": "https://uk.farnell.com/vishay/crcw02010000z0ed/res-0r-0-05w-0201-thick-film/dp/2139811RL"
+                        },
+                        {
+                            "distributor": "Digi-Key",
+                            "quantity": "1594165",
+                            "buyNowLink": "https://www.digikey.co.uk/product-detail/en/vishay-dale/CRCW02010000Z0ED/541-0-0AGTR-ND/1178434"
+                        }
+                    ]
+                },
+                "pricingData": {
+                    "minimumPrice": "0.0033",
+                    "averagePrice": "0.0182",
+                    "minLeadtime": "13 Week(s)",
+                    "maxleadtime": "29 Week(s)",
+                    "lastUpdatedate": "Jul 15,2021"
+                },
+                "riskData": {
+                    "rohsRisk": "Low",
+                    "multiSourcingRisk": "Low",
+                    "inventoryRisk": "Low",
+                    "lifecycleRisk": "Medium",
+                    "predictedObsolescenceYear": "2028",
+                    "lifecycleStage": "Mature",
+                    "yearsEol": "7.3",
+                    "numberOfDistributors": "10",
+                    "numberOfOtherSources": "23",
+                    "crossesPartCategory": "YES",
+                    "seGrade": "5",
+                    "lastUpdateDate": "JULY     , 2021",
+                    "yeolComment": "Part has lived longer than originally expected"
+                },
+                "history": {
+                    "datasheet": [
+                        {
+                            "date": "Jun 20, 2021",
+                            "url": "http://download.siliconexpert.com/pdfs2/2021/6/20/9/44/19/55581/vsh_/manual/crcw0201e3.pdf"
+                        },
+                        {
+                            "date": "Jun 07, 2021",
+                            "url": "http://download.siliconexpert.com/pdfs2/2021/6/7/7/2/3/996972/vsh_/manual/crcw0201e3.pdf"
+                        }
+                    ],
+                    "lifecycle": [
+                        {
+                            "date": "",
+                            "lifecycle": "Active",
+                            "partNumber": "CRCW02010000Z0ED",
+                            "manufacturerName": "Vishay",
+                            "reasonOfChange": "Manufacturer's Confirmation",
+                            "sourceName": "",
+                            "sourceUrl": ""
+                        },
+                        {
+                            "date": "Mar 11, 2011",
+                            "lifecycle": "Introduction Date",
+                            "partNumber": "CRCW02010000Z0ED",
+                            "manufacturerName": "Vishay",
+                            "reasonOfChange": "",
+                            "sourceName": "",
+                            "sourceUrl": ""
+                        }
+                    ]
+                },
+                "productImage": {
+                    "productImageSmall": "http://download.siliconexpert.com/pdfs/2018/1/3/7/28/12/315/vsh_/manual/20052-pt-medium.jpg",
+                    "productImageLarge": "http://download.siliconexpert.com/pdfs/2018/1/3/7/14/22/280/vsh_/manual/20052-pt-medium.jpg"
+                },
+                "ecadModelsData": {
+                    "ecadModelsDto": {
+                        "ecadurl": "https://vendor.ultralibrarian.com/siliconexpert/embedded?mfrName=Vishay&mfrPN=CRCW02010000Z0ED"
+                    }
+                },
+                "designResourcesData": {
+                    "pinOutData": {
+                        "pinOuts": "",
+                        "cadPinOuts": ""
+                    },
+                    "refDesignData": ""
+                },
+                "priceBreaksData": {
+                    "priceBreaksDto": [
+                        {
+                            "priceBreaK": "2273",
+                            "averagePrice": "0.01",
+                            "minPrice": "0.01"
+                        },
+                        {
+                            "priceBreaK": "6000",
+                            "aqveragePrice": "0.0073",
+                            "minPrice": "0.0073"
+                        }
+                    ]
+                },
+                "allPackageData": {
+                    "feature": [
+                        {
+                            "featureName": "Mounting",
+                            "featureValue": "Surface Mount",
+                            "featureUnit": "",
+                            "featureId": "59501"
+                        },
+                        {
+                            "featureName": "Number of Terminals",
+                            "featureValue": "2",
+                            "featureUnit": "",
+                            "featureId": "67233"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

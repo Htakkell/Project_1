@@ -1,0 +1,63 @@
+#Configuration Properties
+##### HTTPS Configuration #####
+
+https:
+  config: "HTTPS_Listener_Config"
+  host: "0.0.0.0"
+  port: "8090"
+  resourcePath: "/api/*"
+  reconnectionFrequency: "30000" #ms
+  reconnectionCount : "3"
+  connectionIdleTimeout: "120000" #ms
+
+##### HTTPS Configuration #####
+
+
+##### Notification API Configuration #####
+
+notification:
+  host: "notification-service-api-prod.us-e2.cloudhub.io"
+  method: "POST"
+  send_email:
+    path: "/api/send_email"
+  reconnectionFrequency: "30000" #ms
+  reconnectionCount : "3"
+  connectionIdleTimeout: "120000" #ms
+
+##### Silicon Expert HTTP Configuration #####
+
+siliconExpert:
+  host: "app.siliconexpert.com"
+  basePath: "/ProductAPI/search"
+  authenticateUserPath: "/authenticateUser"
+  partsPath: "/listPartSearch"
+  partDetailsPath: "/partDetail"
+  reconnectionFrequency: "30000" #ms
+  reconnectionCount : "3"
+  connectionIdleTimeout: "120000" #ms
+  responseTimeout: "120000" #ms
+    
+interface:
+  name: "ciena-silicon-expert-sapi"
+  name_alias: "silicon-expert"
+  environment: "PROD"
+  source_system: "silicon-expert"
+  target_system: "snowflake"
+  api_type: "non-batch"
+  source_object: "silicon-expert"
+  target_object: "snowflake"
+  flowname: ""
+  app_id: "C-959-01-batch"
+  app_runtime: "Cloud HUB"
+  to_email_id: "list.b2b.support@ciena.com"
+  email_subject: "[C-959] ciena-silicon-expert-sapi from SiliconExpert to Snowflake -  Mulesoft Integration ERROR - PROD"
+  mode: "Y"
+  type: "SNOW or NON-SNOW"
+  email_body: ""
+  attribute1: ""
+  
+json:
+  logger:
+    application:
+      name: "ciena-silicon-expert-sapi"
+      version: "1.0.0"

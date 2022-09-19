@@ -1,0 +1,39 @@
+#%RAML 1.0 Trait
+
+responses: 
+  400:
+    description:
+      API cannot or will not process the request due to something that is perceived to be a client error (e.g., invalid request message framing, or deceptive request routing).
+    body:
+      application/json:
+        example: !include ../examples/json/error-responses/sample-400.json
+  404:
+    description:
+      The server cannot find the requested resource.
+    body:
+      application/json:
+        example: !include ../examples/json/error-responses/sample-404.json
+  405:    
+    description:
+      A request was made of resource using un-supported request method for that resource; for example, using GET on a form which requires data to be presented via POST.
+    body:
+      application/json:
+        example: !include ../examples/json/error-responses/sample-405.json
+  406:
+    description:
+      The target resource does not have current representation that would be acceptable to the user agent.
+    body:
+      application/json:
+        example: !include ../examples/json/error-responses/sample-406.json
+  415:
+    description:
+       The accept header specified an unsupported media type.
+    body:
+      application/json:
+        example: !include ../examples/json/error-responses/sample-415.json
+  500:    
+    description:
+       An internal error occurred while processing the request.
+    body:
+      application/json:
+        example: !include ../examples/json/error-responses/sample-500.json
